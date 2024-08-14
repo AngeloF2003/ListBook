@@ -23,7 +23,6 @@
             "title": "Juego de Tronos",
             "pages": 694,
             "genre": "Fantasía",
-            "available": "available",
             "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1273763400i/8189620.jpg",
             "synopsis": "En un reino donde las estaciones duran años, una batalla épica por el trono se desarrolla.",
             "year": 1996,
@@ -94,7 +93,7 @@
       "title": "Dune",
       "pages": 412,
       "genre": "Ciencia ficción",
-      "available": "desavailable",
+
       "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
       "synopsis": "En el inhóspito planeta desértico de Arrakis, una gran intriga política y familiar se desarrolla.",
       "year": 1965,
@@ -203,7 +202,7 @@
         "title": "Frankenstein",
         "pages": 280,
         "genre": "Terror",
-        "available": "desavailable",
+
         "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1669159060i/63631742.jpg",
         "synopsis": "Un científico obsesionado crea una criatura viva a partir de partes de cuerpos robadas, con consecuencias desastrosas.",
         "year": 1818,

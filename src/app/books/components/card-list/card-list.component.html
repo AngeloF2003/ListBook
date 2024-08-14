@@ -1,0 +1,33 @@
+<div class="container-all" id="move-content">
+
+  <div class="container-post">
+
+      <div class="container-category">
+          <label for="TODOS">TODOS</label>
+          <label for="Fantasia">Fantasía</label>
+          <label for="ciencia">Ciencia ficción</label>
+          <label for="zombies">Zombies</label>
+          <label for="terror">Terror</label>
+      </div>
+
+      <div *ngFor="let book of libraries" class="posts">
+
+          <div class="post" data-category="CSS">
+
+              <div class="ctn-img">
+                  <img [src]="book.book.cover" alt="">
+              </div>
+              <h2>{{book.book.title}}</h2>
+              <span>Genero: {{book.book.genre}} - Año: {{book.book.year}}</span>
+              <ul class="ctn-tag">
+                  <li [ngStyle]="{ cursor: 'pointer' }">Leer</li>
+              </ul>
+              <a href="articulo.html"><button>Leer más</button></a>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>

@@ -1,6 +1,4 @@
-body{
-  background: #f6f6f6;
-}
+
 
 header{
   position: fixed;
@@ -100,32 +98,6 @@ header{
 }
 
 #icon-menu:hover{
-  opacity: 0.8;
-}
-/*Contenedor de categorias*/
-
-input[type="radio"]{
-  display: none;
-}
-
-.container-category{
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.container-category label{
-  padding: 6px 40px;
-  margin: 10px;
-  font-size: 20px;
-  background: #e2e2e2;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.container-category label:hover{
   opacity: 0.8;
 }
 
