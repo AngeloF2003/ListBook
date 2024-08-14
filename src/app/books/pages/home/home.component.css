@@ -34,8 +34,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 2; /* Asegura que el contenido esté encima de la capa celeste */
-  padding: 0 20px; /* Agrega algo de espacio lateral */
+  z-index: 2;
+  padding: 0 20px;
 }
 
 /* Estilo para el título */

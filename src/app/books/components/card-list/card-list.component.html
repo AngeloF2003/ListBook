@@ -1,28 +1,38 @@
 <div class="container-all" id="move-content">
 
+  <div id="ctn-bars-search">
+    <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?"
+    (keyup.enter)="searchTag()"
+    #txtTagInput>
+  </div>
+
+  <button class="btn- btn-primary"
+  (click)="prevPage()">
+    anterior
+  </button>
+  &nbsp;
+
+  <button class="btn- btn-primary"
+  (click)="nextPage()"
+  [disabled]="(books | filtro:page:search).length === 0">
+    siguiente
+  </button>
+
   <div class="container-post">
 
-      <div class="container-category">
-          <label for="TODOS">TODOS</label>
-          <label for="Fantasia">Fantasía</label>
-          <label for="ciencia">Ciencia ficción</label>
-          <label for="zombies">Zombies</label>
-          <label for="terror">Terror</label>
-      </div>
-
-      <div *ngFor="let book of libraries" class="posts">
+      <div *ngFor="let book of books | filtro:page:search " class="posts">
 
           <div class="post" data-category="CSS">
 
               <div class="ctn-img">
-                  <img [src]="book.book.cover" alt="">
+                  <img [src]="book.cover" alt="">
               </div>
-              <h2>{{book.book.title}}</h2>
-              <span>Genero: {{book.book.genre}} - Año: {{book.book.year}}</span>
+              <h2>{{book.title}}</h2>
+              <span>Genero: {{book.genre}} - Año: {{book.year}}</span>
               <ul class="ctn-tag">
-                  <li [ngStyle]="{ cursor: 'pointer' }">Leer</li>
+                  <li [ngStyle]="{ cursor: 'pointer' }">{{book.author.name}}</li>
               </ul>
-              <a href="articulo.html"><button>Leer más</button></a>
+              <a><button routerLink="/list/books/read">Leer</button></a>
 
           </div>
 

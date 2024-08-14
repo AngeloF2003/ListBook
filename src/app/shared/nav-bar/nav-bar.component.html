@@ -10,10 +10,10 @@
 
           <nav>
               <ul>
-                  <li><a href="#"> <i class=""></i> Home</a></li>
+                  <li routerLink="home"><a href="#"> <i class=""></i> Home</a></li>
                   <li><a href="#"> <i class=""> </i>List Books</a></li>
                   <li class="menu-selected"><a href="" class="text-menu-selected">
-                      <i class="fas fa-file-alt"></i>Books Reading</a></li>
+                      <i class="fas fa-file-alt" routerLink="list/books/read" ></i>Books Reading</a></li>
                   <li><a href="#"> <i class="fas fa-headset"></i> Contact us</a></li>
               </ul>
           </nav>
@@ -32,11 +32,6 @@
 
 </header>
 
-<div id="ctn-bars-search">
-  <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?"
-  (keyup.enter)="searchTag()"
-  #txtTagInput>
-</div>
 
 <ul id="box-search">
   <li><a href=""><i class="fas fa-search"></i>El Señor de los Anillos</a></li>

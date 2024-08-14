@@ -36,6 +36,7 @@
   max-width: 1200px;
   margin: auto;
   padding: 15px;
+  display: flex;
 
 }
 
@@ -46,6 +47,9 @@
   grid-gap: 20px;
   margin-top: 20px;
   padding: 20px;
+  display: block;
+
+
 
 }
 

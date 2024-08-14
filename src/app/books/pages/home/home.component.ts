@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { Library } from '../../interface/book.interface';
+import { Book, Library } from '../../interface/book.interface';
 
 @Component({
   selector: 'app-home-book',
@@ -9,10 +9,6 @@ import { Library } from '../../interface/book.interface';
 })
 export class HomeComponent {
 
-  constructor(private bookService: BookService) {
-
+  constructor() {
 }
-get books(): Library[]{
-  return this.bookService.bookList;
-  }
 }
