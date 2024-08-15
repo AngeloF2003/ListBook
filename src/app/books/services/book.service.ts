@@ -1,32 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book, SearchResponse } from '../interface/book.interface';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  public bookList: Book[] = [];
-  private _tagsHistory: string []=[];
+  private readingListSource = new BehaviorSubject<Book[]>([]);
+  readingList$ = this.readingListSource.asObservable();
 
   constructor(private http:HttpClient) {
-    this.saveLocalStorage();
-    this.loadLocalStorage();
+
+    const savedList = JSON.parse(localStorage.getItem('readingList') || '[]');
+    this.readingListSource.next(savedList);
   }
-
-  get tagsHistory(){
-    return [...this._tagsHistory];
-  }
-
-private saveLocalStorage():void{
-  localStorage.setItem('books', JSON.stringify(this.bookList))
-}
-
-private loadLocalStorage():void{
-  if(!localStorage.getItem('books')) return;
-  this.bookList = JSON.parse(localStorage.getItem('books')!);
-}
 
 
   getAllBooks(): Observable<Book[]>
@@ -54,6 +42,22 @@ private loadLocalStorage():void{
       }
     })
     return Allbook
+  }
 
+  addBookToReadingList(book: Book): void {
+    const currentList = this.readingListSource.value;
+
+    if (!currentList.some(b => b.ISBN === book.ISBN)) {
+      currentList.push(book);
+      this.readingListSource.next(currentList);
+      localStorage.setItem('readingList', JSON.stringify(currentList));
+    }
+
+  }
+
+  removeBookFromReadingList(book: Book) {
+    const currentList = this.readingListSource.value.filter(b => b.title !== book.title);
+    this.readingListSource.next(currentList);
+    localStorage.setItem('readingList', JSON.stringify(currentList));
   }
 }

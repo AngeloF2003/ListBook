@@ -1,43 +1,43 @@
 <div class="container-all" id="move-content">
+  <div class="counter-container">
+    <p>Total de Libros: {{ totalBooks }}</p>
+    <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
+    <p>Libros en Género Seleccionado: {{ totalFilteredBooks }}</p>
+  </div>
 
   <div id="ctn-bars-search">
-    <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?"
-    (keyup.enter)="searchTag()"
-    #txtTagInput>
+    <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" (keyup.enter)="searchTag()" #txtTagInput>
   </div>
 
-  <button class="btn- btn-primary"
-  (click)="prevPage()">
-    anterior
-  </button>
+  <button class="btn- btn-primary" (click)="prevPage()">anterior</button>
+  <button class="btn- btn-primary" (click)="nextPage()" [disabled]="filteredBooks.length === 0">siguiente</button>
   &nbsp;
 
-  <button class="btn- btn-primary"
-  (click)="nextPage()"
-  [disabled]="(books | filtro:page:search).length === 0">
-    siguiente
-  </button>
+  <button class="btn- btn-primary" (click)="listAll()">Todos</button>
+  <button class="btn- btn-primary" (click)="filterByGenre('Fantasía')">Fantasía</button>
+  <button class="btn- btn-primary" (click)="filterByGenre('Ciencia ficción')">Ciencia Ficción</button>
+  <button class="btn- btn-primary" (click)="filterByGenre('Zombies')">Zombies</button>
+  <button class="btn- btn-primary" (click)="filterByGenre('Terror')">Terror</button>
 
   <div class="container-post">
-
-      <div *ngFor="let book of books | filtro:page:search " class="posts">
-
-          <div class="post" data-category="CSS">
-
-              <div class="ctn-img">
-                  <img [src]="book.cover" alt="">
-              </div>
-              <h2>{{book.title}}</h2>
-              <span>Genero: {{book.genre}} - Año: {{book.year}}</span>
-              <ul class="ctn-tag">
-                  <li [ngStyle]="{ cursor: 'pointer' }">{{book.author.name}}</li>
-              </ul>
-              <a><button routerLink="/list/books/read">Leer</button></a>
-
-          </div>
-
+    <div *ngFor="let book of filteredBooks | filtro:page" class="posts">
+      <div class="post" data-category="CSS">
+        <div class="ctn-img">
+          <img [src]="book.cover" alt="">
+        </div>
+        <h2>{{book.title}}</h2>
+        <span>Genero: {{book.genre}} - Año: {{book.year}}</span>
+        <ul class="ctn-tag">
+          <li [ngStyle]="{ cursor: 'pointer' }">{{book.author.name}}</li>
+        </ul>
+        <button *ngIf="!isInReadingList(book)" (click)="addToReadingList(book)">
+          Añadir a la Lista de Lectura
+        </button>
+        <button *ngIf="isInReadingList(book)" (click)="removeFromReadingList(book)">
+          Remover de la Lista de Lectura
+        </button>
+        <a><button routerLink="/list/books/read">Leer</button></a>
       </div>
-
+    </div>
   </div>
-
 </div>

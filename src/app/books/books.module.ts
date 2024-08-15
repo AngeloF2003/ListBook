@@ -5,6 +5,7 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { BookPipe } from './pipe/book.pipe';
 import { ReadBookComponent } from './components/read-book/read-book.component';
 import { BookRoutingModule } from './book-routing.module';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 
 
@@ -14,11 +15,12 @@ import { BookRoutingModule } from './book-routing.module';
     CardListComponent,
     BookPipe,
     ReadBookComponent,
+    NavBarComponent
   ],
   imports: [
     CommonModule,
     BookRoutingModule
   ],
-  exports: [HomeComponent]
+  exports: []
 })
 export class BooksModule { }
