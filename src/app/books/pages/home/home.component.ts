@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book, Library } from '../../interface/book.interface';
 
@@ -8,7 +8,8 @@ import { Book, Library } from '../../interface/book.interface';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  constructor(){
 
-  constructor() {
-}
+  }
+
 }

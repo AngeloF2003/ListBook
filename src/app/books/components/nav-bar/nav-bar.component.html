@@ -1,58 +1,29 @@
-<header>
-
-  <div class="header-content">
-
-      <div class="logo">
-          <h1>Book<b>Pro</b></h1>
-      </div>
-
-      <div class="menu" id="show-menu">
-
-          <nav>
-              <ul>
-                  <li ><a href="#" routerLink="/home"> <i class=""></i> Home</a></li>
-                  <li><a href="#"> <i class=""> </i>List Books</a></li>
-                  <li class="menu-selected"><a routerLink="/list/books/read" href="" class="text-menu-selected">
-                      <i class="fas fa-file-alt" ></i>Books Reading</a></li>
-                  <li><a href="#"> <i class="fas fa-headset"></i> Contact us</a></li>
-              </ul>
-          </nav>
-
-      </div>
-
-      <div id="ctn-icon-search">
-        <i class="fas fa-search" id="icon-search"></i>
+<header [ngClass]="{'nav_mod': navScrolled}" id="header">
+  <div class="container__header">
+    <div class="logo">
+      <img src="../../../../assets/image/logo-book.svg" alt="Logo">
     </div>
+    <div class="container__nav">
+      <nav id="nav">
+        <ul>
+          <li><a href="#" class="select">HOME</a></li>
+          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#" routerLink="list/books/read">READ LIST</a></li>
+          <li><a href="#">CONTACT US</a></li>
+        </ul>
+      </nav>
 
+      <div class="btn__menu" id="btn_menu" (click)="mostrarMenu()"><i class="fas fa-bars"></i></div>
+    </div>
   </div>
-
-  <div id="icon-menu">
-      <i class="fas fa-bars"></i>
-  </div>
-
 </header>
 
 
-<ul id="box-search">
-  <li><a href=""><i class="fas fa-search"></i>El Señor de los Anillos</a></li>
-  <li><a href=""><i class="fas fa-search"></i>Juego de Tronos</a></li>
-  <li><a href=""><i class="fas fa-search"></i>Harry Potter y la piedra filosofal</a></li>
-</ul>
 
-<div id="cover-ctn-search"></div>
+ <!-- <div id="ctn-icon-search">
+            <i class="fas fa-search" id="icon-search"></i>
+        </div>
 
-<div class="container-post">
-
-  <input type="radio" id="TODOS" name="categories" value="TODOS" checked>
-  <input type="radio" id="ElSeñordelosAnillos" name="categories" value="ElSeñordelosAnillos">
-  <input type="radio" id="JuegodeTronos" name="categories" value="JuegodeTronos">
-  <input type="radio" id="HarryPotterylapiedrafilosofal" name="categories" value="HarryPotterylapiedrafilosofal">
-
-  <div class="container-category">
-      <label for="TODOS">TODOS</label>
-      <label for="ElSeñordelosAnillos">ElSeñordelosAnillos</label>
-      <label for="JuegodeTronos">JuegodeTronos</label>
-      <label for="HarryPotterylapiedrafilosofal">HarryPotterylapiedrafilosofal</label>
-
-  </div>
-
+          <div id="ctn-bars-search">
+            <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" #txtTagInput>
+          </div> -->

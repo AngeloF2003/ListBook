@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import{HttpClientModule} from '@angular/common/http';
 import { BooksModule } from './books/books.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BooksModule } from './books/books.module';
     AppRoutingModule,
     HttpClientModule,
     BooksModule,
+    FontAwesomeModule,
 
   ],
   providers: [],

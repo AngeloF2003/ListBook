@@ -4,10 +4,6 @@ import { HomeComponent } from "./pages/home/home.component";
 import { ReadBookComponent } from "./components/read-book/read-book.component";
 const routes: Routes = [
   {
-    path:'',
-    component: HomeComponent,
-  },
-  {
     path:'home',
     component: HomeComponent
   },

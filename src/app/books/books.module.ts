@@ -6,6 +6,7 @@ import { BookPipe } from './pipe/book.pipe';
 import { ReadBookComponent } from './components/read-book/read-book.component';
 import { BookRoutingModule } from './book-routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -19,7 +20,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   ],
   imports: [
     CommonModule,
-    BookRoutingModule
+    BookRoutingModule,
+   FontAwesomeModule
   ],
   exports: []
 })
