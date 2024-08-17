@@ -16,7 +16,6 @@ export class BookService {
     this.readingListSource.next(savedList);
   }
 
-
   getAllBooks(): Observable<Book[]>
   {
    return this.http.get<SearchResponse>('../../assets/data/books.json')

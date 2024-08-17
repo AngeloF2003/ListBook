@@ -1,5 +1,4 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
-import { BookService } from 'src/app/books/services/book.service';
+import { Component, ElementRef, HostListener} from '@angular/core';
 
 @Component({
   selector: 'nav-bar-book',
@@ -13,7 +12,18 @@ export class NavBarComponent {
 
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scroll > 20) {
+      this.navScrolled = true;
+    } else {
+      this.navScrolled = false;
+    }
+  }
+
   mostrarMenu() {
+
     const menu = this.elemento.nativeElement.querySelector('#header');
     const nav = this.elemento.nativeElement.querySelector('#nav');
 
@@ -21,7 +31,6 @@ export class NavBarComponent {
     nav.classList.toggle('move_nav');
   }
 
-  // Escucha el evento de redimensionamiento de la ventana
   @HostListener('window:resize', [])
   onResize() {
     if (window.innerWidth > 760) {
@@ -30,16 +39,6 @@ export class NavBarComponent {
 
       menu.classList.remove('move_content');
       nav.classList.remove('move_nav');
-    }
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scroll = document.documentElement.scrollTop || document.body.scrollTop;
-    if (scroll > 20) {
-      this.navScrolled = true;
-    } else {
-      this.navScrolled = false;
     }
   }
 }
