@@ -1,18 +1,24 @@
 <main>
-   <div class="counter-container">
-    <p>Total de Libros: {{ totalBooks }}</p>
-    <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
-    <p>Libros en Género Seleccionado: {{ totalFilteredBooks }}</p>
+    <div class="counter-container">
+      <p>Total de Libros: {{ totalBooks }}</p>
+      <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
+    </div>
+
+  <div class="container-category">
+    <button class="btn- btn-primary" (click)="listAll()">Todos</button>
+    <button class="btn- btn-primary" (click)="filterByGenre('Fantasía')">Fantasía</button>
+    <button class="btn- btn-primary" (click)="filterByGenre('Ciencia ficción')">Ciencia Ficción</button>
+    <button class="btn- btn-primary" (click)="filterByGenre('Zombies')">Zombies</button>
+    <button class="btn- btn-primary" (click)="filterByGenre('Terror')">Terror</button>
   </div>
 
-  <button class="btn- btn-primary" (click)="listAll()">Todos</button>
-  <button class="btn- btn-primary" (click)="filterByGenre('Fantasía')">Fantasía</button>
-  <button class="btn- btn-primary" (click)="filterByGenre('Ciencia ficción')">Ciencia Ficción</button>
-  <button class="btn- btn-primary" (click)="filterByGenre('Zombies')">Zombies</button>
-  <button class="btn- btn-primary" (click)="filterByGenre('Terror')">Terror</button>
+  <div class="container-pagina">
+      <button class="btn- btn-primary pagina1" (click)="prevPage()"><i class="fas fa-chevron-left"></i></button>
+      <button class="btn- btn-primary pagina2" (click)="nextPage()" [disabled]="filteredBooks.length === 0"><i class="fas fa-chevron-right"></i></button>
+      &nbsp;
+  </div>
 
   <div class="container__card">
-
       <div class="card__father" *ngFor="let book of filteredBooks | filtro:page">
           <div class="card">
               <div class="card__front"  [ngStyle]="{'background-image': 'url(' + book.cover + ')'}">
@@ -33,10 +39,6 @@
           </div>
       </div>
   </div>
-
-  <button class="btn- btn-primary" (click)="prevPage()">anterior</button>
-  <button class="btn- btn-primary" (click)="nextPage()" [disabled]="filteredBooks.length === 0">siguiente</button>
-  &nbsp;
 </main>
 
 
