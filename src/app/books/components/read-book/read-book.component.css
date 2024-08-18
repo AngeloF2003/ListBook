@@ -17,7 +17,7 @@ header{
   z-index: 100;
   transition: all 300ms;
   box-shadow: 1px 1px 10px 0px #00000010;
-  background: white !important;
+  background: #2196f3;
 }
 
 
@@ -68,7 +68,7 @@ nav ul li{
 }
 
 nav ul li a{
-  color: #373737;
+  color: white ;
   font-size: 14px;
 }
 
@@ -117,7 +117,7 @@ nav ul li a{
 
   nav{
       height: 100%;
-      background: #F1FAFF;
+      background: #2196f3;
       position: fixed;
       top: 0;
       right: -180px;
@@ -140,106 +140,137 @@ nav ul li a{
 
 
 
-
-
 .container-all {
-  margin: 20px auto;
-  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 100px;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+.container h2{
+  padding: 20px;
+}
 .container-post {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
 
 .posts {
-  flex: 0 1 45%;
-  margin: 10px;
+  margin: 20px;
+  perspective: 1000px;
 }
 
-.post {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  padding: 20px;
+.animated-card {
+  width: 350px;
+  height: 400px;
   position: relative;
-  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 600ms;
+  border-radius: 20px;
 }
 
-.post:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.animated-card:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.card__front {
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
+.card__back {
+  background: white;
+  transform: rotateY(180deg);
+  border-radius: 20px;
+}
+
+.ctn-img {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  border-radius: 20px;
 }
 
 .ctn-img img {
   width: 100%;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
-h2 {
-  font-size: 1.5rem;
-  color: #333;
-  margin: 10px 0;
+.card__front,
+.card__back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-span {
-  font-size: 1rem;
-  color: #777;
-}
-
-.ctn-tag {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-}
-
-.ctn-tag li {
-  display: inline-block;
-  background-color: #007bff;
+.body__card_front {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-right: 5px;
-  font-size: 0.9rem;
+  transform: translateZ(60px);
+  margin-left: -40px;
 }
 
-button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+.bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.4);
+  border-radius: 20px;
+}
+
+.body__card_back {
+  padding: 40px;
+  text-align: center;
+  transform: translateZ(60px);
+}
+
+.body__card_back p {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.body__card_back button {
+  padding: 10px 40px;
+  margin-top: 30px;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  border: none;
+  color: white;
+  background: #58B0F6;
+  box-shadow: 1px 1px 30px -5px #58B0F6;
+  border-radius: 10px;
+  transition: box-shadow 600ms;
 }
 
-button:hover {
-  background-color: #218838;
+.body__card_back button:hover {
+  box-shadow: 1px 1px 30px 0px #449de6;
 }
-
-button + button {
-  background-color: #dc3545;
-}
-
-button + button:hover {
-  background-color: #c82333;
-}
-
-.animated-card {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-

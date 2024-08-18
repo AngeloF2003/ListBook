@@ -1,17 +1,9 @@
-<div class="container-all" id="move-content">
-  <div class="counter-container">
+<main>
+   <div class="counter-container">
     <p>Total de Libros: {{ totalBooks }}</p>
     <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
     <p>Libros en Género Seleccionado: {{ totalFilteredBooks }}</p>
   </div>
-
-  <div id="ctn-bars-search">
-    <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" (keyup.enter)="searchTag()" #txtTagInput>
-  </div>
-
-  <button class="btn- btn-primary" (click)="prevPage()">anterior</button>
-  <button class="btn- btn-primary" (click)="nextPage()" [disabled]="filteredBooks.length === 0">siguiente</button>
-  &nbsp;
 
   <button class="btn- btn-primary" (click)="listAll()">Todos</button>
   <button class="btn- btn-primary" (click)="filterByGenre('Fantasía')">Fantasía</button>
@@ -19,25 +11,32 @@
   <button class="btn- btn-primary" (click)="filterByGenre('Zombies')">Zombies</button>
   <button class="btn- btn-primary" (click)="filterByGenre('Terror')">Terror</button>
 
-  <div class="container-post">
-    <div *ngFor="let book of filteredBooks | filtro:page" class="posts">
-      <div class="post" data-category="CSS">
-        <div class="ctn-img">
-          <img [src]="book.cover" alt="">
-        </div>
-        <h2>{{book.title}}</h2>
-        <span>Genero: {{book.genre}} - Año: {{book.year}}</span>
-        <ul class="ctn-tag">
-          <li [ngStyle]="{ cursor: 'pointer' }">{{book.author.name}}</li>
-        </ul>
-        <button *ngIf="!isInReadingList(book)" (click)="addToReadingList(book)">
-          Añadir a la Lista de Lectura
-        </button>
-        <button *ngIf="isInReadingList(book)" (click)="removeFromReadingList(book)">
-          Remover de la Lista de Lectura
-        </button>
-        <a><button routerLink="/list/books/read">Leer</button></a>
+  <div class="container__card">
+
+      <div class="card__father" *ngFor="let book of filteredBooks | filtro:page">
+          <div class="card">
+              <div class="card__front"  [ngStyle]="{'background-image': 'url(' + book.cover + ')'}">
+                  <div class="bg"></div>
+                  <div class="body__card_front">
+
+                  </div>
+              </div>
+              <div class="card__back">
+                  <div class="body__card_back">
+                      <h1>{{book.author.name}}</h1>
+                      <p>Sinopsis: {{book.synopsis}}</p>
+
+                      <input *ngIf="!isInReadingList(book)" (click)="addToReadingList(book)" type="button"  value="Añadir Lectura">
+                      <input *ngIf="isInReadingList(book)" (click)="removeFromReadingList(book)" type="button" value="Remover Lectura">
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-</div>
+
+  <button class="btn- btn-primary" (click)="prevPage()">anterior</button>
+  <button class="btn- btn-primary" (click)="nextPage()" [disabled]="filteredBooks.length === 0">siguiente</button>
+  &nbsp;
+</main>
+
+

@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  list-style: none;
+
 }
 
 .container__all{
@@ -32,7 +32,7 @@
 }
 
 .wave{
-  width: 6000px;
+  width: 7000px;
   height: 100%;
   position: absolute;
   top: 150px;
