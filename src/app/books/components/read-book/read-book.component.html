@@ -1,22 +1,6 @@
-<header [ngClass]="{'nav_mod': navScrolled}" id="header">
-  <div class="container__header">
-    <div class="logo">
-      <img src="../../../../assets/image/logo-book.svg" alt="Logo">
-    </div>
-    <div class="container__nav">
-      <nav id="nav">
-        <ul>
-          <li><a href="#" class="select">HOME</a></li>
-          <li><a href="#">ABOUT US</a></li>
-          <li><a href="#" routerLink="list/books/read">READ LIST</a></li>
-          <li><a href="#">CONTACT US</a></li>
-        </ul>
-      </nav>
-
-      <div class="btn__menu" id="btn_menu" (click)="mostrarMenu()"><i class="fas fa-bars"></i></div>
-    </div>
-  </div>
-</header>
+<div>
+  <nav-bar-book></nav-bar-book>
+</div>
 
 <div class="container-all" id="move-content">
   <div class="container" *ngIf="readingList.length > 0; else emptyList">
@@ -34,7 +18,7 @@
                 <span>Autor: {{ book.author.name }}</span>
                 <ul class="ctn-tag">
                   <p>Género: {{ book.genre }}</p>
-                  <p>Sinopsis: {{ book.synopsis }}</p>
+
                 </ul>
                 <button (click)="remove(book)">Remover de la Lista de Lectura</button>
               </div>

@@ -8,7 +8,7 @@ export class BookPipe implements PipeTransform {
 
   transform(books: Book[], page: number = 0): Book[] {
 
-    return books.slice(page, page +4);
+    return books.slice(page, page +3);
   }
 
 }

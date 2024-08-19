@@ -91,21 +91,19 @@ export class CardListComponent implements OnInit {
       );
     }
 
-
-    this.totalFilteredBooks = this.filteredBooks.length;
     this.totalBooks = this.books.length - this.readingList.length;
     this.totalReadingListBooks = this.readingList.length;
   }
 
 
   nextPage(){
-    this.page += 4;
+    this.page += 1;
   }
 
 
   prevPage(){
     if(this.page > 0)
-    this.page -=4;
+    this.page -=1;
   }
 
   searchTag(): void {

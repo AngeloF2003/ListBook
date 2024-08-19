@@ -6,12 +6,12 @@
   font-size:30px ;
 }
 
-.container-pagina .pagina1,
+.pagina1,
 .pagina2{
   border: none;
-  color: white;
-  background: #359EF9;
-  padding: 10px 30px;
+  color: #359EF9;
+  background: #fff;
+  padding: 20px 30px;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -25,7 +25,19 @@
   font-size:30px ;
 
 }
-
+.counter-container .search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.counter-container .search .busca{
+  height: 30px;
+  margin-left: 70px;
+}
+.counter-container .search input{
+  width: 430px;
+  height: 30px;
+}
 .container-category  {
   position: relative;
   max-width: 1200px;

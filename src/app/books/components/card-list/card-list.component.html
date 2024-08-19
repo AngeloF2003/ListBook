@@ -1,7 +1,16 @@
-<main>
+<main>¿
     <div class="counter-container">
       <p>Total de Libros: {{ totalBooks }}</p>
       <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
+      <br>
+       <!-- <div id="ctn-icon-search" class="search">
+            <i class="fas fa-search  busca" id="icon-search"></i>
+        </div>
+
+          <div id="ctn-bars-search" class="search">
+            <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?"
+            (keyup.enter)="searchTag()" #txtTagInput>
+          </div> -->
     </div>
 
   <div class="container-category">
@@ -19,6 +28,7 @@
   </div>
 
   <div class="container__card">
+
       <div class="card__father" *ngFor="let book of filteredBooks | filtro:page">
           <div class="card">
               <div class="card__front"  [ngStyle]="{'background-image': 'url(' + book.cover + ')'}">
