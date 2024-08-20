@@ -3,25 +3,23 @@
 </div>
 
 <div class="container-all" id="move-content">
-  <div class="container" *ngIf="readingList.length > 0; else emptyList">
+  <div class="container__card" *ngIf="readingList.length > 0; else emptyList">
     <h2>Your Reading List</h2>
-    <div class="container-post">
-      <div *ngFor="let book of readingList" class="posts">
-        <div class="animated-card">
+    <div class="slide-container">
+      <div class="slide-content">
+        <div *ngFor="let book of readingList" class="card-wrapper">
           <div class="card">
-            <div class="card__front ctn-img">
-              <img [src]="book.cover" alt="">
-            </div>
-            <div class="card__back">
-              <div class="body__card_back">
-                <h2>{{ book.title }}</h2>
-                <span>Autor: {{ book.author.name }}</span>
-                <ul class="ctn-tag">
-                  <p>Género: {{ book.genre }}</p>
-
-                </ul>
-                <button (click)="remove(book)">Remover de la Lista de Lectura</button>
+            <div class="image-content">
+              <div class="overlay"></div>
+              <div class="card-image">
+                <img [src]="book.cover" alt="" class="card-img">
               </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">{{ book.title }}</h2>
+              <span class="description">Autor: {{ book.author.name }}</span>
+              <p class="description">Género: {{ book.genre }}</p>
+              <button class="button" (click)="remove(book)">Remover</button>
             </div>
           </div>
         </div>
