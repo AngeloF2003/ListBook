@@ -3,9 +3,11 @@
       <p>Total de Libros: {{ totalBooks }}</p>
       <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
       <br>
-      <!-- <div id="ctn-icon-search">
-        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-      </div> -->
+      <div id="ctn-icon-search" class="container-search">
+        <svg class="busca" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.55-5.9a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+        </svg>
+      </div>
       <div id="ctn-bars-search" class="search">
           <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" (keyup.enter)="searchTag()" #txtTagInput>
       </div>
@@ -20,8 +22,15 @@
   </div>
 
   <div class="container-pagina">
-      <button class="btn- btn-primary pagina1" (click)="prevPage()"><i class="fas fa-chevron-left"></i></button>
-      <button class="btn- btn-primary pagina2" (click)="nextPage()" [disabled]="filteredBooks.length === 0"><i class="fas fa-chevron-right"></i></button>
+      <button class="btn- btn-primary pagina1" (click)="prevPage()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      </button>
+
+      <button class="btn- btn-primary pagina2" (click)="nextPage()" [disabled]="filteredBooks.length === 0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+      </button>
       &nbsp;
   </div>
 
@@ -50,33 +59,3 @@
   </div>
 </body>
 
-
-
-
- <body>
-<!--
-
- <div class="slide-container">
-  <div class="slide-content">
-    <div class="card-wrapper" *ngFor="let book of filteredBooks | filtro:page">
-      <div class="card">
-        <div class="image-content">
-          <span class="overlay"> </span>
-
-          <div class="card-image">
-            <img [src]="book.cover" alt="" class="card-img">
-          </div>
-
-          <div class="card-content">
-            <h2 class="name">{{book.title}}</h2>
-            <p class="description">{{book.synopsis}}</p>
-
-            <button class="button">agregar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- </div> -->
-
- </body>
