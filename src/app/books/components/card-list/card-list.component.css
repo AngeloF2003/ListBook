@@ -242,3 +242,52 @@ align-items: center;
     font-size: 16px;
   }
 }
+
+@media (max-width: 560px) {
+  .container__card {
+    padding: 20px;
+  }
+
+  .slide-content {
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .card-wrapper {
+    margin: 10px 0;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .slide-container {
+    padding: 20px 0;
+  }
+
+  .card-wrapper {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+  }
+
+  .image-content,
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .card-image .card-img {
+    border: 3px solid #359EF9;
+  }
+}
