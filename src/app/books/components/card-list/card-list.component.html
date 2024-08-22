@@ -4,7 +4,7 @@
       <p>Libros en Lista de Lectura: {{ totalReadingListBooks }}</p>
       <br>
       <div id="ctn-bars-search" class="search">
-          <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" (keyup.enter)="searchTag()" #txtTagInput>
+          <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?" (input)="onInputChange($event)" (keyup.enter)="searchTag()" #txtTagInput>
       </div>
   </div>
 
@@ -16,41 +16,70 @@
       <button class="btn- btn-primary" (click)="filterByGenre('Terror')">Terror</button>
   </div>
 
-  <div class="container-pagina">
+  <div class="container-category">
+    <button class="btn- btn-primary"  (click)="filterByPages('<100')"> menores a 100</button>
+    <button class="btn- btn-primary" (click)="filterByPages('100-200')">100-200</button>
+    <button class="btn- btn-primary" (click)="filterByPages('200-300')">200-300</button>
+    <button class="btn- btn-primary" (click)="filterByPages('300-400')">300-400</button>
+    <button class="btn- btn-primary" (click)="filterByPages('>400')">más de 400</button>
+</div>
+
+  <!-- <div class="container-pagina">
       <button class="btn- btn-primary pagina1" (click)="prevPage()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       </button>
-
       <button class="btn- btn-primary pagina2" (click)="nextPage()" [disabled]="filteredBooks.length === 0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
       </button>
       &nbsp;
-  </div>
+  </div> -->
 
   <div class="container__card">
-      <div class="slide-container">
-          <div class="slide-content">
-              <div class="card-wrapper" *ngFor="let book of filteredBooks | filtro:page">
-                  <div class="card">
-                      <div class="image-content">
-                          <span class="overlay"></span>
-                          <div class="card-image">
-                              <img [src]="book.cover" alt="" class="card-img">
-                          </div>
-                      </div>
-                      <div class="card-content">
-                          <h2 class="name">{{book.title}}</h2>
-                          <p class="description">{{book.synopsis}}</p>
+    <div *ngIf="filteredBooks.length === 0" class="no-results">
+      <p class="no-search">Sorry, no search results </p>
+    </div>
 
-                          <button *ngIf="!isInReadingList(book)" (click)="addToReadingList(book)" class="button">Añadir Lectura</button>
-                          <button *ngIf="isInReadingList(book)" (click)="removeFromReadingList(book)" class="button">Remover Lectura</button>
-                      </div>
-                  </div>
+    <div class="slide-container" *ngIf="filteredBooks.length > 0">
+      <div class="slide-content">
+        <div class="card-wrapper" *ngFor="let book of filteredBooks">
+          <div class="card">
+            <div class="image-content">
+              <span class="overlay"></span>
+              <div class="card-image">
+                <img [src]="book.cover" alt="" class="card-img">
               </div>
+            </div>
+            <div class="card-content">
+              <h2 class="name">{{book.title}}</h2>
+              <p class="description">{{book.synopsis}}</p>
+
+              <button
+                *ngIf="!isInReadingList(book)"
+                (click)="addToReadingList(book)"
+                class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20" style="margin-right: 8px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4m7 4V8h2v8z" />
+                </svg>
+                Añadir Lectura
+              </button>
+
+              <button
+                *ngIf="isInReadingList(book)"
+                (click)="removeFromReadingList(book)"
+                class="button button-remove">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Remover Lectura
+              </button>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
+
 </body>
 

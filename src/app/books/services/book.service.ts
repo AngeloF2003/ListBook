@@ -7,14 +7,14 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-  private readingListSource = new BehaviorSubject<Book[]>([]);
+  private readingListSource = new BehaviorSubject<Book[]>(this.getReadingListFromLocalStorage());
   readingList$ = this.readingListSource.asObservable();
 
   constructor(private http:HttpClient) {
 
-    const savedList = JSON.parse(localStorage.getItem('readingList') || '[]');
-    this.readingListSource.next(savedList);
-  }
+    window.addEventListener('storage', this.onStorageChange.bind(this));
+    console.log(this);
+    }
 
   getAllBooks(): Observable<Book[]>
   {
@@ -45,18 +45,33 @@ export class BookService {
 
   addBookToReadingList(book: Book): void {
     const currentList = this.readingListSource.value;
-
     if (!currentList.some(b => b.ISBN === book.ISBN)) {
-      currentList.push(book);
-      this.readingListSource.next(currentList);
-      localStorage.setItem('readingList', JSON.stringify(currentList));
+      const updatedList = [...currentList, book];
+      this.updateReadingListInLocalStorage(updatedList);
+      this.readingListSource.next(updatedList);
     }
-
   }
 
-  removeBookFromReadingList(book: Book) {
-    const currentList = this.readingListSource.value.filter(b => b.title !== book.title);
-    this.readingListSource.next(currentList);
-    localStorage.setItem('readingList', JSON.stringify(currentList));
+  removeBookFromReadingList(book: Book): void {
+    const currentList = this.readingListSource.value;
+    const updatedList = currentList.filter(b => b.ISBN !== book.ISBN);
+    this.updateReadingListInLocalStorage(updatedList);
+    this.readingListSource.next(updatedList);
+  }
+
+  private updateReadingListInLocalStorage(list: Book[]): void {
+    localStorage.setItem('readingList', JSON.stringify(list));
+  }
+
+  private getReadingListFromLocalStorage(): Book[] {
+    const list = localStorage.getItem('readingList');
+    return list ? JSON.parse(list) : [];
+  }
+
+  private onStorageChange(event: StorageEvent): void {
+    if (event.key === 'readingList') {
+      const updatedList = event.newValue ? JSON.parse(event.newValue) : [];
+      this.readingListSource.next(updatedList);
+    }
   }
 }

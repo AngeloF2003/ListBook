@@ -1,7 +1,6 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Book, Library } from '../../interface/book.interface';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Book } from '../../interface/book.interface';
 import { BookService } from '../../services/book.service';
-import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-card-list',
@@ -20,6 +19,7 @@ export class CardListComponent implements OnInit {
   public totalBooks   : number = 0;
   public totalReadingListBooks: number = 0;
   public totalFilteredBooks   : number = 0;
+  public rangePages : string = '';
 
 
   constructor(private bookService: BookService) {
@@ -33,17 +33,12 @@ export class CardListComponent implements OnInit {
         this.updateReadingList(readingList);
         this.applyFilters();
       });
-
-      const storedReadingList = localStorage.getItem('readingList');
-      if (storedReadingList) {
-        this.readingList = JSON.parse(storedReadingList);
-        this.applyFilters();
-      }
   }
 
   listAll(): void {
     this.selectedGenre = '';
     this.search = '';
+    this.rangePages='';
     this.bookService.getAllBooks().subscribe(books => {
       this.books = books;
       this.filteredBooks = this.books.map(book => {
@@ -58,23 +53,19 @@ export class CardListComponent implements OnInit {
     this.readingList = readingList;
   }
 
-  @HostListener('window:storage', ['$event'])
-  onStorageChange(event: StorageEvent): void {
-    if (event.key === 'readingList') {
-      const updatedReadingList = event.newValue ? JSON.parse(event.newValue) : [];
-      this.readingList = updatedReadingList;
-      this.applyFilters();
-    }
-  }
-
   filterByGenre(genre: string): void {
     this.selectedGenre = genre;
     this.applyFilters();
   }
 
-  applyFilters(): void {
-    this.filteredBooks = this.books;
+  filterByPages(range: string){
+    this.rangePages = range;
+    this.applyFilters();
+  }
 
+  applyFilters(): void {
+
+    this.filteredBooks = this.books;
     if (this.search) {
       this.filteredBooks = this.filteredBooks.filter(book =>
         book.title.toUpperCase().includes(this.search.trim().toUpperCase()) ||
@@ -91,23 +82,37 @@ export class CardListComponent implements OnInit {
       );
     }
 
+    if (this.rangePages) {
+      if (this.rangePages === '<100') {
+        this.filteredBooks = this.filteredBooks.filter(book => book.pages < 100);
+      } else if (this.rangePages === '100-200') {
+        this.filteredBooks = this.filteredBooks.filter(book => book.pages >= 100 && book.pages <= 200);
+      } else if(this.rangePages === '200-300'){
+        this.filteredBooks = this.filteredBooks.filter(book => book.pages >= 200 && book.pages <= 300);
+      } else if(this.rangePages === '300-400'){
+        this.filteredBooks = this.filteredBooks.filter(book => book.pages >= 300 && book.pages <= 400);
+      } else if(this.rangePages === '>400'){
+        this.filteredBooks = this.filteredBooks.filter(book => book.pages > 400);
+      }
+    }
+
     this.totalBooks = this.books.length - this.readingList.length;
     this.totalReadingListBooks = this.readingList.length;
   }
 
 
   nextPage(){
-    this.page += 1;
+    this.page += 3;
   }
 
 
   prevPage(){
     if(this.page > 0)
-    this.page -=1;
+    this.page -=3;
   }
 
   searchTag(): void {
-    const newTag = this.TagInput.nativeElement.value;
+    const newTag = this.TagInput.nativeElement.value.trim();
     this.TagInput.nativeElement.value = '';
     this.search = newTag;
     this.applyFilters();
@@ -129,6 +134,15 @@ export class CardListComponent implements OnInit {
     return this.readingList.some(b => b.ISBN === book.ISBN);
   }
 
+  onInputChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value;
+
+    if (value.startsWith(' ')) {
+      value = value.replace(/^\s+/, '');
+      input.value = value;
+    }
+  }
 }
 
 
